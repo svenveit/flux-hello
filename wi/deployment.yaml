@@ -1,10 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kv-test
+  namespace: wi-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kv-test
   template:
     metadata:
       labels:
         app: kv-test
-        azure.workload.identity/use: "true"   # Webhook greift nur bei diesem Label
+        azure.workload.identity/use: "true"
     spec:
-      serviceAccountName: kv-reader            # muss zum Subject im Federated Credential passen
+      serviceAccountName: kv-reader
       containers:
       - name: azcli
         image: mcr.microsoft.com/azure-cli
