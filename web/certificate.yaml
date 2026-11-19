@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: web
+  namespace: web
+spec:
+  secretName: web-tls
+  dnsNames:
+    - web.lab.local
+  issuerRef:
+    kind: ClusterIssuer
+    name: selfsigned
